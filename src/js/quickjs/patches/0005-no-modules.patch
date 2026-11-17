@@ -1,8 +1,8 @@
 diff --git a/quickjs.c b/quickjs.c
-index b5786ef..c348c08 100644
+index 3c032ed..5014e83 100644
 --- a/quickjs.c
 +++ b/quickjs.c
-@@ -31965,6 +31965,8 @@ static JSValue js_dynamic_import(JSContext *ctx, JSValueConst specifier,
+@@ -32097,6 +32097,8 @@ static JSValue js_dynamic_import(JSContext *ctx, JSValueConst specifier,
      JSValue attributes_obj = JS_UNDEFINED;
      JSValue args[5];
  
@@ -11,7 +11,7 @@ index b5786ef..c348c08 100644
      basename = JS_GetScriptOrModuleName(ctx, 0);
      if (basename == JS_ATOM_NULL)
          basename_val = JS_NULL;
-@@ -38185,6 +38187,9 @@ static JSValue JS_EvalFunctionInternal(JSContext *ctx, JSValue fun_obj,
+@@ -38377,6 +38379,9 @@ static JSValue JS_EvalFunctionInternal(JSContext *ctx, JSValue fun_obj,
          ret_val = JS_CallFree(ctx, fun_obj, this_obj, 0, NULL);
      } else if (tag == JS_TAG_MODULE) {
          JSModuleDef *m;
@@ -21,7 +21,7 @@ index b5786ef..c348c08 100644
          m = JS_VALUE_GET_PTR(fun_obj);
          /* the module refcount should be >= 2 */
          JS_FreeValue(ctx, fun_obj);
-@@ -38248,6 +38253,8 @@ static JSValue __JS_EvalInternal(JSContext *ctx, JSValueConst this_obj,
+@@ -38440,6 +38445,8 @@ static JSValue __JS_EvalInternal(JSContext *ctx, JSValueConst this_obj,
          var_refs = NULL;
          is_strict_mode = (flags & JS_EVAL_FLAG_STRICT) != 0;
          if (eval_type == JS_EVAL_TYPE_MODULE) {
@@ -30,7 +30,7 @@ index b5786ef..c348c08 100644
              JSAtom module_name = JS_NewAtom(ctx, filename);
              if (module_name == JS_ATOM_NULL)
                  return JS_EXCEPTION;
-@@ -40485,6 +40492,8 @@ static JSValue JS_ReadObjectRec(BCReaderState *s)
+@@ -40688,6 +40695,8 @@ static JSValue JS_ReadObjectRec(BCReaderState *s)
          no_allow_bytecode:
              return JS_ThrowSyntaxError(ctx, "no bytecode allowed");
          }
